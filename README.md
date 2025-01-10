@@ -1,6 +1,4 @@
 # Zircon Hub
-<img src="logo.png">
-
 
 ### Loader
 
