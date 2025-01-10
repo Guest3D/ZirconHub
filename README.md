@@ -1,6 +1,6 @@
 # Zircon Hub
 
-# Loader
+### Loader
 
 ```lua
   loadstring(game:HttpGet(""))
