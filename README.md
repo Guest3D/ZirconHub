@@ -6,4 +6,4 @@
   loadstring(game:HttpGet(""))
 ```
 
-<img src="Assets/logo.png">
+<img src="logo.png">
