@@ -44,7 +44,7 @@ end)
 function Tween(P1)
     local Distance = (P1.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
     if Distance > 1 then
-        Speed = 350
+        Speed = 250
     end
     game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),{CFrame = P1}):Play()
     if _G.Settings.StopTween then
@@ -171,7 +171,7 @@ spawn(function()
 	while task.wait() do
 		if _G.Settings.AutoFish then
 			pcall(function()
-				repeat task.wait()
+				repeat task.wait(1)
 					game:GetService('VirtualUser'):CaptureController()
 					game:GetService('VirtualUser'):Button1Down(Vector2.new(1280, 672))
 					task.wait(1.4)
@@ -224,7 +224,7 @@ spawn(function()
 	while task.wait() do
 		if _G.Settings.AutoLuck then
 			pcall(function()
-				repeat task.wait()
+				repeat task.wait(1)
 					game:GetService("ReplicatedStorage"):WaitForChild("events"):WaitForChild("fishing"):WaitForChild("canPurchaseUpgrade"):InvokeServer("luckBoost")
 				until _G.Settings.AutoLuck == false
 			end)
@@ -236,7 +236,7 @@ spawn(function()
 	while task.wait() do
 		if _G.Settings.AutoStrength then
 			pcall(function()
-				repeat task.wait()
+				repeat task.wait(1)
 					game:GetService("ReplicatedStorage"):WaitForChild("events"):WaitForChild("fishing"):WaitForChild("canPurchaseUpgrade"):InvokeServer("powerBoost")
 				until _G.Settings.AutoStrength == false
 			end)
@@ -248,7 +248,7 @@ spawn(function()
 	while task.wait() do
 		if _G.Settings.AutoFishSpeed then
 			pcall(function()
-				repeat task.wait()
+				repeat task.wait(1)
 					game:GetService("ReplicatedStorage"):WaitForChild("events"):WaitForChild("fishing"):WaitForChild("canPurchaseUpgrade"):InvokeServer("speedBoost")
 				until _G.Settings.AutoFishSpeed == false
 			end)
