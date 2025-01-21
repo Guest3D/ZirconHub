@@ -7,6 +7,15 @@ local Section = Window:NewSection("Main")
 local AutoHitbox = false
 local AutoTPRandom = false
 
+spawn(function()
+while task.wait() do
+	game.Players.PlayerRemoving:Connect(function(plr)
+    	if plr == game.Players.LocalPlayer then
+      		game:GetService('TeleportService'):Teleport(game.PlaceId)
+    	end
+	end)
+end
+end)
 
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
@@ -34,7 +43,7 @@ Section:CreateButton("TP Random", function()
 	    if v:IsA("BasePart") then
 		    if v.Name == "HumanoidRootPart" then
 			    if v.Parent ~= game.Players.LocalPlayer.Character then
-                    if v.Parent.Name ~= "Friend" then
+                    if v.Parent.Name ~= "Friend" or v.Parent.Name ~= "Sensei" then
 				    if v.Parent.CanBeHit.Value == true then
 				    	if v.Parent.Humanoid.Health ~= 0 then
 						    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame + Vector3.new(0,0,0)
@@ -87,7 +96,7 @@ local function teleport()
                     for i, v in pairs(workspace:GetDescendants()) do
                         if v:IsA("BasePart") and v.Name == "HumanoidRootPart" then
                             if v.Parent ~= LocalPlayer.Character then
-                                if v.Parent.Name ~= "Friend" then
+                                if v.Parent.Name ~= "Friend" or v.Parent.Name ~= "Sensei" then
                                     if v.Parent:FindFirstChild("CanBeHit") then
                                         if v.Parent.CanBeHit.Value == true then
                                             if v.Parent.Humanoid.Health ~= 0 then
