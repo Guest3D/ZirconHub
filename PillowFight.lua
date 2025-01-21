@@ -6,15 +6,52 @@ local Section = Window:NewSection("Main")
 
 local AutoHitbox = false
 local AutoTPRandom = false
+local AutoSmack = false
+local AutoIn = false
+local AutoEquip = false
+
+spawn(function()
+	while task.wait() do
+			game.Players.LocalPlayer.CharacterAdded:Connect(function()
+				if AutoIn then
+					game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = workspace.Lobby.Portals.RedPortal.gate.CFrame
+				end
+			end)
+	end
+end)
 
 spawn(function()
 while task.wait() do
-	game.Players.PlayerRemoving:Connect(function(plr)
-    	if plr == game.Players.LocalPlayer then
-      		game:GetService('TeleportService'):Teleport(game.PlaceId)
-    	end
-	end)
+		game.Players.PlayerRemoving:Connect(function(plr)
+			if AutoRejoin == true then
+    		if plr == game.Players.LocalPlayer then
+      			game:GetService('TeleportService'):Teleport(game.PlaceId)
+    		end
+			end
+		end)
 end
+end)
+
+spawn(function()
+	while task.wait(0.5) do
+		if AutoSmack == true then
+			for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+     			if v:IsA("Tool") then
+            		v:Activate()
+        		end 
+    		end
+		end
+	end
+end)
+
+spawn(function()
+	while task.wait(0.1) do
+		if AutoEquip == true then
+			for i,v in pairs(LocalPlayer.Backpack:GetChildren()) do
+        		LocalPlayer.Character:WaitForChild("Humanoid"):EquipTool(v)
+    		end
+		end
+	end
 end)
 
 local Players = game:GetService("Players")
@@ -61,23 +98,19 @@ Section:CreateToggle("Auto Hitbox", function(value)
 end)
 
 Section:CreateToggle("Auto Smack", function(value)
-    while value do
-    for i,v in pairs(LocalPlayer.Character:GetChildren()) do
-        if v:IsA("Tool") then
-            v:Activate()
-        end 
-    end
-    task.wait(0.5)
-    end
+	AutoSmack = value
+end)
+
+Section:CreateToggle("Auto Rejoin", function(value)
+	AutoRejoin = value
+end)
+
+Section:CreateToggle("Auto In", function(value)
+	AutoIn = value
 end)
 
 Section:CreateToggle("Auto Equip", function(value)
-    while value do
-    for i,v in pairs(LocalPlayer.Backpack:GetChildren()) do
-        LocalPlayer.Character:WaitForChild("Humanoid"):EquipTool(v)
-    end
-    task.wait(0.1)
-    end
+	AutoEquip = value
 end)
 
 Section:CreateToggle("Auto TP Random", function(value)
