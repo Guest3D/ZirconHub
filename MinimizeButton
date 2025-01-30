@@ -1,0 +1,30 @@
+local ui = {}
+
+function ui:AddMinimizeButton(Configs)
+
+local UI = Instance.new("ScreenGui", game.CoreGui)
+UI.Name = game:GetService("HttpService"):GenerateGUID(false)
+local button = Instance.new("ImageButton", UI)
+button.Position = UDim2.new(0, 0)
+button.Size = UDim2.new(0, 50, 0, 50)
+button.BackgroundColor3 = Color3.fromRGB(0,0,0)
+button.Image = "rbxassetid://"..Configs[1]
+button.Activated:Connect(function()
+	Configs[2]:Minimize()
+end)
+local framedrag = uidrag.new(button)
+framedrag:Enable()
+local uicorner = Instance.new("UICorner", button)
+uicorner.CornerRadius = UDim.new(0, 8)
+
+spawn(function()
+	while task.wait() do
+		if Fluent.Unloaded then
+			UI:Destroy()
+		end
+	end
+end)
+
+end
+
+return ui
