@@ -1,3 +1,5 @@
+local uidrag = loadstring(game:HttpGet("https://raw.githubusercontent.com/Guest3D/ZirconHub/refs/heads/main/UIDragModule"))()
+
 local ui = {}
 
 function ui:AddMinimizeButton(Configs)
