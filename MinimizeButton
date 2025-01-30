@@ -10,7 +10,7 @@ button.Size = UDim2.new(0, 50, 0, 50)
 button.BackgroundColor3 = Color3.fromRGB(0,0,0)
 button.Image = "rbxassetid://"..Configs[1]
 button.Activated:Connect(function()
-	Configs[2]:Minimize()
+	Configs[2]
 end)
 local framedrag = uidrag.new(button)
 framedrag:Enable()
